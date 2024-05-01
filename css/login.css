@@ -1,0 +1,104 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: hsl(0, 0%, 6%);
+  color: hsl(0, 0%, 98%);
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+form {
+  width: 100%;
+  max-width: 350px;
+  padding: 20px;
+  background: #000;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-family: "Montserrat", sans-serif;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="submit"] {
+  width: 89%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 6px;
+}
+
+input[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a249;
+}
+
+label {
+  color: white;
+  display: block;
+  margin-bottom: 5px;
+}
+
+h2 {
+  color: white;
+  text-align: left;
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  border: 2px solid transparent;
+  border-radius: 5px;
+  outline: none;
+}
+
+input:invalid {
+  background-color: var(--invalid);
+}
+
+input:valid {
+  background-color: var(--valid);
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.submitbtn,
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #2a292c;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.submitbtn:hover,
+input[type="submit"]:hover {
+  background-color: #404949;
+}
+
+h1,
+h2 {
+  text-align: center;
+  color: #a9a9a9;
+}

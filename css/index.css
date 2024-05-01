@@ -1,0 +1,28 @@
+/* index.css */
+body {
+  background-color: #242424; /* Background abu-abu */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Membuat konten berada di tengah secara vertikal */
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  color: white;
+  background-color: #000; /* Background hitam untuk box */
+  padding: 20px;
+  border-radius: 10px; /* Memberikan sudut yang sedikit melengkung */
+  text-align: center; /* Menengahkan teks */
+}
+
+a {
+  color: #fff; /* Warna teks untuk link */
+  text-decoration: none; /* Menghilangkan garis bawah pada link */
+  margin: 0 10px; /* Memberikan jarak antar link */
+}
+
+a:hover {
+  color: #ccc; /* Warna teks saat hover */
+}

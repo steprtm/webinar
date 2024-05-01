@@ -1,0 +1,57 @@
+/* css/register.css */
+body {
+  background-color: #242424; /* Background abu-abu */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  color: white;
+  margin-bottom: 20px;
+}
+
+.container,
+form {
+  background-color: #000; /* Box berwarna hitam */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Menambahkan sedikit bayangan */
+  text-align: center;
+  width: 300px; /* Atur lebar form */
+}
+
+label {
+  color: white; /* Warna teks label */
+  text-align: left;
+  display: block;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="submit"] {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  box-sizing: border-box; /* Menghindari input melebihi lebar container */
+}
+
+input[type="submit"] {
+  background-color: #006eff; /* Warna hijau untuk tombol submit */
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #1900ff; /* Warna lebih gelap saat hover */
+}
+
+a {
+  color: #ddd;
+}

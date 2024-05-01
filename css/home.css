@@ -1,0 +1,77 @@
+body {
+  background-color: #202020;
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 20px;
+  color: white;
+}
+.montserrat {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+h1 {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.seminar {
+  background-color: #000000;
+  padding: 10px;
+  margin: 10px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.seminar h2 {
+  color: #ffffff;
+}
+
+.seminar p {
+  color: #ffffff;
+}
+
+.seminar a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.seminar a:hover {
+  text-decoration: underline;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  flex: 1;
+  font-family: "Montserrat", sans-serif;
+}
+button:hover {
+  background-color: #0056b3;
+}
+
+.logout-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
