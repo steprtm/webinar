@@ -11,6 +11,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     <meta charset="UTF-8">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="css/admin_dashboard.css">
+    <a href="logout.php" class="button logout-btn">Logout</a>
+
 </head>
 <body>
     <h1>Admin Dashboard</h1>
