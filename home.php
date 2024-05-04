@@ -2,65 +2,27 @@
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
+    // Redirect to login if not logged in
     header('Location: login.php');
     exit();
 }
 
+// Include the database connection file
+include 'db.php';
 
-$seminar = [
-    [
-        'event_id'=> '1',
-        'nama' => 'Teknologi Blockchain',
-        'tempat' => 'Auditorium Universitas ABC',
-        'waktu' => '26 Maret 2024, 14:00 WIB',
-        'link' => '' 
-    ],
-    [
-        'event_id'=> '2',
-        'nama' => 'Pengembangan Web Modern',
-        'tempat' => 'Online',
-        'waktu' => '5 April 2024, 13:00 WIB',
-        'link' => 'https://link.com/webinar'
-    ],
-    [
-        'event_id' =>'3',
-        'nama' => 'AI dan Machine Learning',
-        'tempat' => 'Online',
-        'waktu' => '15 Juli 2024, 12:00 WIB',
-        'link' => 'https://link.com/webinar'
-    ],
-    [
-        'event_id' => '4',
-        'nama' => 'Pengolahan Citra',
-        'tempat' => 'Auditorium Universitas ABC',
-        'waktu' => '20 Agustus 2024, 10:00 WIB',
-        'link' => ''
-    ]
-];
-?>
-<?php if (isset($_SESSION['alertMessage'])): ?>
-<script>
-    alert("<?php echo $_SESSION['alertMessage']; ?>");
-</script>
-<?php 
-    
-    unset($_SESSION['alertMessage']); 
-?>
-<?php endif; ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-<script>
-function openCertificate(templateUrl) {
-    window.open(templateUrl, '_blank'); 
+// Fetch seminars from the database
+$query = "SELECT * FROM events ORDER BY start_date DESC";
+$result = $conn->query($query);
+$seminars = [];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $seminars[] = $row;
+    }
+} else {
+    echo "No seminars found.";
 }
-<?php
+$conn->close();
+
 function getCertificateTemplate($seminarName) {
     switch ($seminarName) {
         case 'Teknologi Blockchain':
@@ -76,47 +38,56 @@ function getCertificateTemplate($seminarName) {
     }
 }
 ?>
-</script>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - Seminar Details</title>
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <h1>Daftar Seminar</h1>
-    <div id="certificate" style="display:none;">
-    <h1>Certificate of Completion</h1>
-    <p>This is to certify that <strong>{{name}}</strong> has completed the seminar.</p>
-</div>
-
-  <div class="container">
-    <?php foreach ($seminar as $event): ?>
+    <div class="container">
+        <?php foreach ($seminars as $event): ?>
         <div class="seminar">
-            <h2><?php echo htmlspecialchars($event['nama']); ?></h2>
-            <p>Tempat: <?php echo htmlspecialchars($event['tempat']); ?></p>
-            <p>Waktu: <?php echo htmlspecialchars($event['waktu']); ?></p>
+            <h2><?php echo htmlspecialchars($event['name']); ?></h2>
+            <p>Tempat: <?php echo htmlspecialchars($event['location']); ?></p>
+            <p>Waktu: <?php echo htmlspecialchars($event['start_date']); ?></p>
             <?php if (!empty($event['link'])): ?>
                 <p>Link: <a href="<?php echo htmlspecialchars($event['link']); ?>">Join Webinar</a></p>
             <?php endif; ?>
             <div class="form-buttons">
-                <form action="register_event.php" method="post" style="margin: 0;">
+                <form action="register_event.php" method="post" style="display: inline;">
                     <input type="hidden" name="event_id" value="<?php echo $event['event_id']; ?>">
                     <button type="submit" name="register">Daftar</button>
                 </form>
-                <form action="cancel_registration.php" method="post" style="margin: 0;">
+                <form action="cancel_registration.php" method="post" style="display: inline;">
                     <input type="hidden" name="event_id" value="<?php echo $event['event_id']; ?>">
                     <button type="submit" name="cancel">Cancel</button>
                 </form>
-            
+                <button onclick="openCertificate('<?php echo getCertificateTemplate($event['name']); ?>')">Cetak Sertifikat</button>
             </div>
-             <div class="form-buttons">
-            <button onclick="openCertificate('<?php echo getCertificateTemplate($event['nama']); ?>')">Cetak Sertifikat</button>
         </div>
-        </div>
-    <?php endforeach; ?>
-</div>
-
+        <?php endforeach; ?>
+    </div>
     <div class="logout-btn">
         <form action="logout.php" method="post">
             <button type="submit" name="logout">Logout</button>
         </form>
     </div>
+    <script>
+    function openCertificate(templateUrl) {
+        window.open(templateUrl, '_blank');
+    }
+    </script>
+    <?php if (isset($_SESSION['alertMessage'])): ?>
+<script>
+    alert("<?php echo $_SESSION['alertMessage']; ?>");
+    <?php unset($_SESSION['alertMessage']); ?> // Clear the message after displaying it
+</script>
+<?php endif; ?>
 </body>
 </html>
