@@ -1,0 +1,50 @@
+body {
+  background-color: #242424; /* Dark gray background for the page */
+  font-family: Arial, sans-serif; /* Set the font for the whole page */
+  color: white; /* Make text color white for the whole page */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background-color: #000; /* Black background for the form */
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px; /* Control the form width */
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  width: 100%;
+  background-color: #006eff; /* Blue background for the button */
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+h2 {
+  margin-bottom: 20px;
+}
